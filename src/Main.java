@@ -1,6 +1,7 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class Main
@@ -90,6 +91,29 @@ public class Main
         }
     }
 
+    private static void example6()
+    {
+        var dateFormat = new SimpleDateFormat("yyyyMMdd");
+
+        try
+        {
+            var date1 = dateFormat.parse("20220705");
+
+            var today = new Date();
+            System.out.println("Today is " + new SimpleDateFormat("yyyy.MM.dd.").format(today));
+
+            long days1 = TimeUnit.DAYS.convert(today.getTime() - date1.getTime(), TimeUnit.MILLISECONDS);
+            System.out.println("today - date1 = " + days1 + " days");
+
+            long days2 = TimeUnit.DAYS.convert(date1.getTime() - today.getTime(), TimeUnit.MILLISECONDS);
+            System.out.println("date1 - today = " + days1 + " days");
+        }
+        catch (ParseException e)
+        {
+            System.out.println("Example4: Invalid date!");
+        }
+    }
+
     public static void main(String[] args)
     {
         System.out.println("Comparing dates");
@@ -112,6 +136,10 @@ public class Main
 
         System.out.println("Date example 5");
         example5();
+        System.out.println();
+
+        System.out.println("Date example 6");
+        example6();
         System.out.println();
     }
 }
