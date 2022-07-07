@@ -86,7 +86,7 @@ public class Main
         }
         catch (ParseException e)
         {
-            System.out.println("Example4: Invalid date!");
+            System.out.println("Example5: Invalid date!");
         }
     }
 
@@ -98,18 +98,45 @@ public class Main
         {
             var date1 = dateFormat.parse("20220705");
 
-            var today = new Date();
-            System.out.println("Today is " + new SimpleDateFormat("yyyy.MM.dd.").format(today));
+            var now = new Date();
+            System.out.println("Today is " + new SimpleDateFormat("yyyy.MM.dd.").format(now));
 
-            long days1 = TimeUnit.DAYS.convert(today.getTime() - date1.getTime(), TimeUnit.MILLISECONDS);
+            long days1 = TimeUnit.DAYS.convert(now.getTime() - date1.getTime(), TimeUnit.MILLISECONDS);
             System.out.println("today - date1 = " + days1 + " days");
 
-            long days2 = TimeUnit.DAYS.convert(date1.getTime() - today.getTime(), TimeUnit.MILLISECONDS);
+            long days2 = TimeUnit.DAYS.convert(date1.getTime() - now.getTime(), TimeUnit.MILLISECONDS);
             System.out.println("date1 - today = " + days1 + " days");
         }
         catch (ParseException e)
         {
-            System.out.println("Example4: Invalid date!");
+            System.out.println("Example6: Invalid date!");
+        }
+    }
+
+    private static void example7()
+    {
+        var now = new Date();
+
+        // The result is false
+        System.out.println(now.before(now));
+    }
+
+    private static void example8()
+    {
+        try
+        {
+            var now = new Date();
+            var date = new SimpleDateFormat("yyyyMMdd").parse("20220707");
+
+            System.out.println(now);
+            System.out.println(date);
+
+            System.out.println(date.before(now));
+            System.out.println(now.before(date));
+        }
+        catch (ParseException e)
+        {
+            System.out.println("Example8: Invalid date!");
         }
     }
 
@@ -139,6 +166,14 @@ public class Main
 
         System.out.println("Date example 6");
         example6();
+        System.out.println();
+
+        System.out.println("Date example 7");
+        example7();
+        System.out.println();
+
+        System.out.println("Date example 8");
+        example8();
         System.out.println();
     }
 }
